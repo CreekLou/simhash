@@ -1,3 +1,15 @@
 # simhash
-An efficient algorithm for text similarity computation
-高效的文本去重算法实现
+高效的文本相似度去重算法实现
+
+## simhash是什么
+Google发明的的文本去重算法，适合于大批量文档的相似度计算
+ * [博客介绍](http://grunt1223.iteye.com/blog/964564) 
+
+## 主要步骤
+ * 对文本分词，得到N维特征向量（默认为64维）
+ * 为分词设置权重（tf-idf）
+ * 为特征向量计算哈希
+ * 对所有特征向量加权，累加（目前仅进行非加权累加）
+ * 对累加结果，大于零置一，小于零置零
+ * 得到文本指纹（fingerprint）
+ 
