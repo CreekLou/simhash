@@ -64,13 +64,14 @@ public final class KeywordExtractor {
 		// 计算词频tf
 		Map<String, Double> wordmap = new HashMap<String, Double>();
 		for (String word : words) {
-			wordmap.put(word, 1.0);
 			if (!wordmap.containsKey(word)) {
 				wordmap.put(word, 1.0);
+			}else{
+				wordmap.put(word, wordmap.get(word) + 1);
 			}
-			wordmap.put(word, wordmap.get(word) + 1);
 		}
-
+		
+		
 		// 删除停用词并计算权重
 		Iterator<Entry<String, Double>> it = wordmap.entrySet().iterator();
 		while (it.hasNext()) {
@@ -91,6 +92,10 @@ public final class KeywordExtractor {
 			}
 		}
 
+		for(String key:wordmap.keySet()){
+			System.out.println(key+" : "+wordmap.get(key));
+		}
+		
 		return wordmap;
 	}
 
